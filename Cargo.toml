@@ -1,0 +1,21 @@
+[package]
+name = "snakenladder"
+version = "0.1.0"
+authors = ["Saraswathi Govind Datar NA <saras3@pdx.edu>"]
+edition = "2018"
+
+[lib]
+name = "snakenladder"
+path = "src/snakenladder.rs"
+
+[[bin]]
+name = "SNL"
+path = "src/main.rs"
+
+[dependencies]
+#termion = "1.5.1"
+#unicode-segmentation = "1.2.0"
+#termion = "*"
+text_io = "0.1.7"
+rand = "*"
+#scan = "*"
