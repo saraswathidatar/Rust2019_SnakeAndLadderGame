@@ -17,10 +17,13 @@ Using a command line tool, navigate to project directory and execute cargo run.
 How to Play:
 
 Board Setup-
-The board consists of blocks from 1 to 100. There are several ladders denoted by -> and snakes represented as ~ on the board. Players are supposed to climb the ladder to further thier moves. If a snake is encountered then player has to slide down the snake to move backward in the board. There can be 2 to 4 players playing this game. Each player is assigned an Avatar. Player has to roll dice on their turn. Random number generation is used for dice. A player rolling 6 gets another turn. The player to first land on block 100 wins. The board gets displayed each time the player's roll their dice along with their position in the board. 
+The board consists of blocks from 1 to 100. There are several ladders denoted by -> and snakes represented as ~ on the board. Players are supposed to climb the ladder to further thier moves. If a snake is encountered then player has to slide down the snake to move backward in the board. There can be 2 to 4 players playing this game. Each player is assigned an Avatar. Player has to roll dice on their turn. Random number generation is used for dice. The player to first land on block 100 wins. The board gets displayed each time the player's roll their dice along with their position in the board. 
 
 Bug or Issue Tracker
 You can report the bugs in the following link: https://github.com/saraswathidatar/Rust2019_SnakeAndLadderGame/issues
+
+Contact information:
+For any queries related to this project, please feel free to contact. My Email is saras3@pdx.edu
 
 TODOs:
 1. Fix the warnings.
