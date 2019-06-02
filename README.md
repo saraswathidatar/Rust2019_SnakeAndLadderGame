@@ -30,3 +30,8 @@ TODOs:
 2. Run cargo clippy.
 3. Right now if players land up on same block only one player is displayed on board cropping the rest. Need to change that.
 4. Try to incorporate piston 2d graphics crate for drawing a grid, ladders and snakes; and animation crate when a player moves.
+5. Trying termion
+6. Handle cases for non integers in How many players println
+7. Write tests
+8. code refactor
+9. Rustdoc comments
