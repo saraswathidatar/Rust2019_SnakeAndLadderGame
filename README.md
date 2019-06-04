@@ -11,8 +11,10 @@ Snake and Ladder terminal based game written in Rust for CS510 Spring 2019 Rust 
 Getting Started:
 
 Installation-
+Install Rust using this link https://www.rust-lang.org/tools/install
 git clone https://github.com/saraswathidatar/Rust2019_SnakeAndLadderGame
-Using a command line tool, navigate to project directory and execute cargo run.
+Using a command line tool, navigate to project directory.
+Execute cargo build and cargo run to install the dependencies/build the program and run it.
 
 How to Play:
 
