@@ -9,11 +9,16 @@ Introduction:
 
 Snake and Ladder terminal based game written in Rust for CS510 Spring 2019 Rust Programming course at Portland State University.
 
+Screenshots:
+![Screenshot1.png](https://github.com/saraswathidatar/Rust2019_SnakeAndLadderGame/blob/master/static/Screenshot1.png)
+![Screenshot2.png](https://github.com/saraswathidatar/Rust2019_SnakeAndLadderGame/blob/master/static/Screenshot2.png)
+![Screenshot3.png](https://github.com/saraswathidatar/Rust2019_SnakeAndLadderGame/blob/master/static/Screenshot3.png)
+
 Getting Started:
 
 Installation-
-Install Rust using this link https://www.rust-lang.org/tools/install
-git clone https://github.com/saraswathidatar/Rust2019_SnakeAndLadderGame
+Install Rust using this link https://www.rust-lang.org/tools/install.
+Git clone https://github.com/saraswathidatar/Rust2019_SnakeAndLadderGame.
 Using a command line tool, navigate to project directory.
 Execute cargo build and cargo run to install the dependencies/build the program and run it.
 
