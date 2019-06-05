@@ -1,4 +1,5 @@
 # Rust2019_SnakeAndLadderGame
+![SnakeNLadder.jpg](https://github.com/saraswathidatar/Rust2019_SnakeAndLadderGame/blob/master/static/SnakeNLadder.jpg)
 Copyright (c) 2019 Saraswathi Govind Datar NA
 
 This project is licensed under the "MIT License". Please see the file LICENSE in this distribution for license terms.
