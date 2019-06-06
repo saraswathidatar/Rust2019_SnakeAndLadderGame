@@ -16,7 +16,7 @@ fn main() {
     println!("{}", "Let's PLay Snakes and Ladders");
     // This is used to display the board the first time
     let mut snl = Snl::new();
-    snl.ramstart();
+    snl.gamestart();
     exit(0);
 }
 
