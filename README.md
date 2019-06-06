@@ -44,9 +44,12 @@ For any queries related to this project, please feel free to contact. My Email i
 
 Future Goals:
 1. Displaying board, Players, ladders and snakes using 2D graphics crate such as Piston
-2. Adding animation using animation crate
+2. Adding animation such as moving players and also moving them up the ladder, sliding down snakes using animation crate
 3. Adding sound using Audio crate
 4. Random number generation for dice could be made more random
+
+References:
+https://github.com/redox-os/termion
 
 TODOs:
 1. Fix the warnings.
