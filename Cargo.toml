@@ -13,9 +13,7 @@ name = "SNL"
 path = "src/main.rs"
 
 [dependencies]
-#termion = "1.5.1"
-#unicode-segmentation = "1.2.0"
-#termion = "*"
+termion = "1.5.1"
 text_io = "0.1.7"
 rand = "*"
-#scan = "*"
+
