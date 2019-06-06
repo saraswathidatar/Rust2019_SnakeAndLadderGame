@@ -1,5 +1,4 @@
 # Rust2019_SnakeAndLadderGame
-![SnakeNLadder.jpg](https://github.com/saraswathidatar/Rust2019_SnakeAndLadderGame/blob/master/static/Snakenladders.jpg)
 Copyright (c) 2019 Saraswathi Govind Datar NA
 
 This project is licensed under the "MIT License". Please see the file LICENSE in this distribution for license terms.
@@ -18,9 +17,14 @@ Getting Started:
 
 Installation-
 Install Rust using this link https://www.rust-lang.org/tools/install.
+
 Git clone https://github.com/saraswathidatar/Rust2019_SnakeAndLadderGame.
+
 Using a command line tool, navigate to project directory.
+
 Execute cargo build and cargo run to install the dependencies/build the program and run it.
+
+Unit tests can be run with cargo test.
 
 How to Play:
 
@@ -28,10 +32,17 @@ Board Setup-
 The board consists of blocks from 1 to 100. There are several ladders denoted by -> and snakes represented as ~ on the board. Players are supposed to climb the ladder to further thier moves. If a snake is encountered then player has to slide down the snake to move backward in the board. There can be 2 to 4 players playing this game. Each player is assigned an Avatar. Player has to roll dice on their turn. Random number generation is used for dice. The player to first land on block 100 wins. The board gets displayed each time the player's roll their dice along with their position in the board. 
 
 Bug or Issue Tracker
+
 You can report the bugs in the following link: https://github.com/saraswathidatar/Rust2019_SnakeAndLadderGame/issues
 
 Contact information:
 For any queries related to this project, please feel free to contact. My Email is saras3@pdx.edu
+
+Future Goals:
+1. Displaying board, Players, ladders and snakes using 2D graphics crate such as Piston
+2. Adding animation using animation crate
+3. Adding sound using Audio crate
+4. Random number generation for dice could be made more random
 
 TODOs:
 1. Fix the warnings.
