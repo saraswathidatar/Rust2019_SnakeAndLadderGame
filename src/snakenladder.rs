@@ -7,12 +7,10 @@
 
 #[macro_use]
 extern crate text_io;
-extern crate termion;//add 1
+extern crate termion;
 use rand::Rng;
 use std::collections::HashMap;
-use termion::{color};// add 2
-//use std::io::{stdin, stdout, Read, Write};
-//use std::process::exit;
+use termion::color;
 
 //Snake and ladder class consisting of Board layout and number of players in the game
 pub struct Snl {
@@ -28,9 +26,8 @@ impl Snl {
             players: Players::new(),
         }
     }
-    //draws the initial board layout
-    pub fn ramstart(&mut self) {
-        println!("************JAI SIYARAM ************");
+    ///draws the initial board layout
+    pub fn gamestart(&mut self) {
         let numplayers = self.numplayers.getplayers();
         let arr_players = self.players.updateplayerinfo(numplayers);
         self.players.gameplay(arr_players, numplayers);
@@ -45,21 +42,16 @@ pub struct Numplayers {
 //create a new number of players object
 impl Numplayers {
     pub fn new() -> Numplayers {
-        return Numplayers { num_players: 0 };
+        Numplayers { num_players: 0 }
     }
 
     pub fn getplayers(&mut self) -> usize {
-        println!("{}", "How many of you dare to enter the pit - 2 3 or 4?");
-
+        println!("{:?}", "How many of you dare to enter the pit - 2 3 or 4?");
         //Use function to select input players
         let mut num_players: usize;
         scan!("{}", num_players);
-        //println!("Num players is:{}", num_players.unwrap());
-        //AK:  DO error checking for whether it is a valid integer or not
-
-        //This still need to be in a loop as well. AK need to figure this out wrt about scan function & error check!
         while num_players > 4 || num_players < 2 {
-            println!("{}", "RAM: Please choose between 2 3 or 4?");
+            println!("{:?}", "Please choose between 2 3 or 4?");
             scan!("{}", num_players);
         }
         self.num_players = num_players;
@@ -70,38 +62,36 @@ impl Numplayers {
 
 #[derive(Copy, Clone)]
 struct Players<'a> {
-    postion: usize,
+    position: usize,
     avatar: &'a str,
     avatar_display: &'a str,
     avatar_overlap: &'a str,
 }
 
-
-impl<'a> Players<'a>{
-
-    pub fn new() -> Players<'static>{
-        let arr_players = Players{
-            postion: 1,
+impl<'a> Players<'a> {
+    pub fn new() -> Players<'static> {
+        let arr_players = Players {
+            position: 1,
             avatar: "|*A*       ",
             avatar_overlap: "|*A*#B#    ",
             avatar_display: "*A*",
         };
-        return arr_players;
+        arr_players
     }
 
-    pub fn updateplayerinfo(&mut self, numplayers: usize) -> Vec<Players<'static>>{
+    pub fn updateplayerinfo(&mut self, numplayers: usize) -> Vec<Players<'static>> {
         let mut arr_players = vec![];
         match numplayers {
             2 => {
                 arr_players.push(Players {
-                    postion: 1,
+                    position: 1,
                     avatar: "|*A*       ",
                     avatar_overlap: "|*A*#B#    ",
                     avatar_display: "*A*",
                 });
                 println!("Player A's avatar is {:?}", arr_players[0].avatar_display);
                 arr_players.push(Players {
-                    postion: 1,
+                    position: 1,
                     avatar: "|#B#       ",
                     avatar_overlap: "|*A*#B#    ",
                     avatar_display: "#B#",
@@ -110,21 +100,21 @@ impl<'a> Players<'a>{
             }
             3 => {
                 arr_players.push(Players {
-                    postion: 1,
+                    position: 1,
                     avatar: "|*A*       ",
                     avatar_overlap: "|*A*#B#$C$ ",
                     avatar_display: "*A*",
                 });
                 println!("Player A's avatar is {:?}", arr_players[0].avatar_display);
                 arr_players.push(Players {
-                    postion: 1,
+                    position: 1,
                     avatar: "|#B#       ",
                     avatar_overlap: "|*A*#B#$C$ ",
                     avatar_display: "#B#",
                 });
                 println!("Player B's avatar is {:?}", arr_players[1].avatar_display);
                 arr_players.push(Players {
-                    postion: 1,
+                    position: 1,
                     avatar: "|$C$       ",
                     avatar_overlap: "|*A*#B#$C$ ",
                     avatar_display: "$C$",
@@ -133,28 +123,28 @@ impl<'a> Players<'a>{
             }
             4 => {
                 arr_players.push(Players {
-                    postion: 1,
+                    position: 1,
                     avatar: "|*A*       ",
                     avatar_overlap: "|*A#B$C%D  ",
                     avatar_display: "*A*",
                 });
                 println!("Player A's avatar is {:?}", arr_players[0].avatar_display);
                 arr_players.push(Players {
-                    postion: 1,
+                    position: 1,
                     avatar: "|#B#       ",
                     avatar_overlap: "|*A#B$C%D  ",
                     avatar_display: "#B#",
                 });
                 println!("Player B's avatar is {:?}", arr_players[1].avatar_display);
                 arr_players.push(Players {
-                    postion: 1,
+                    position: 1,
                     avatar: "|$C$       ",
                     avatar_overlap: "|*A#B$C%D  ",
                     avatar_display: "$C$",
                 });
                 println!("Player C's avatar is {:?}", arr_players[2].avatar_display);
                 arr_players.push(Players {
-                    postion: 1,
+                    position: 1,
                     avatar: "|%D%       ",
                     avatar_overlap: "|*A#B$C%D  ",
                     avatar_display: "%D%",
@@ -163,10 +153,10 @@ impl<'a> Players<'a>{
             }
             _ => (),
         }
-        return arr_players;
+        arr_players
     }
 
-    //function to Define a hash for snakes and ladders
+    ///function to Define a hash for snakes and ladders
     pub fn laddersnakeshash(&mut self, position: usize) -> usize {
         //Defining hash for ladders
         let mut ladders = HashMap::new();
@@ -185,20 +175,15 @@ impl<'a> Players<'a>{
         ladders.insert(89, 95);
 
         //check if a player gets a ladder
-        match ladders.get(&position) {
-            Some(x) => {
+        if let Some(x) = ladders.get(&position) {
                 println!("YAY! You rolled & reached a Ladder!!");
-                //println!("RAM : Old position was {:?}", position);
-                //arr_players[0].postion = *x;
                 new_position = *x;
                 println!(
                     "You reach {:?} and climb your way up to {:?}",
                     position, new_position
                 );
             }
-            //No ladder matched
-            None => (),
-        }
+
 
         //Defining a hash for the snakes
         let mut snakes = HashMap::new();
@@ -213,24 +198,18 @@ impl<'a> Players<'a>{
         snakes.insert(98, 78);
 
         //check if a player gets a snake
-        match snakes.get(&position) {
-            Some(x) => {
+        if let Some(x) = snakes.get(&position) {
                 println!("Oh NO!!!! You got bit by a Snake!!***");
-                //println!("RAM : Old position was {:?}", position);
-                //arr_players[0].postion = *x;
                 new_position = *x;
                 println!(
                     "You reach {:?} to slide all the way back to {:?}",
                     position, new_position
                 );
             }
-            //No snake matched
-            None => (),
-        }
-        return new_position;
+        new_position
     }
 
-    pub fn gameplay(&mut self, mut arr_players: Vec<Players<'static>>, num_players: usize ){
+    pub fn gameplay(&mut self, mut arr_players: Vec<Players<'static>>, num_players: usize) {
         let border = "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! S  ~SNAKES & LADDERS-> R !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
         let input = vec![
             vec![
@@ -360,8 +339,8 @@ impl<'a> Players<'a>{
 
         //Draw initial layout
         for k in 0..num_players {
-            row_num[k] = (arr_players[k].postion - 1) / 10;
-            column[k] = (arr_players[k].postion - 1) % 10;
+            row_num[k] = (arr_players[k].position - 1) / 10;
+            column[k] = (arr_players[k].position - 1) % 10;
         }
         println!();
         println!("**** {:?} Players have entered the pit - Chaos is a ladder [or a snake]. You either climb or get bit! Roll & enjoy the chaos...****", num_players);
@@ -390,7 +369,7 @@ impl<'a> Players<'a>{
                 while correctroll == false {
                     println!(
                         "Player {:?}'s current position {:?}",
-                        arr_players[n].avatar_display, arr_players[n].postion
+                        arr_players[n].avatar_display, arr_players[n].position
                     );
                     println!(
                         "Player {:?}, please roll dice by typing 'r' or 'R' ",
@@ -401,7 +380,7 @@ impl<'a> Players<'a>{
 
                     let r = "r".to_string();
                     let a = "R".to_string();
-                    let new_pos;// = 0
+                    let new_pos; // = 0
 
                     if wait_roll == r || wait_roll == a {
                         //AK: Define function call for roll function
@@ -411,28 +390,27 @@ impl<'a> Players<'a>{
                             arr_players[n].avatar_display,
                             roll + 1
                         );
-                        new_pos = arr_players[n].postion + (roll + 1);
+                        new_pos = arr_players[n].position + (roll + 1);
                         //You must land on 100 to win
                         if new_pos > 100 {
                             println!("Oops, rolled too high. Wait for your turn now!");
                         } else {
-                            arr_players[n].postion = new_pos;
-                            arr_players[n].postion = self.laddersnakeshash(arr_players[n].postion);
+                            arr_players[n].position = new_pos;
+                            arr_players[n].position = self.laddersnakeshash(arr_players[n].position);
                             println!(
                                 "Player {:?}'s new position {:?}",
-                                arr_players[n].avatar_display, arr_players[n].postion
+                                arr_players[n].avatar_display, arr_players[n].position
                             );
-                            row_num[n] = (arr_players[n].postion - 1) / 10;//RAM AK: Only delete this after ensuring everything works
-                            column[n] = (arr_players[n].postion - 1) % 10;
-                            //println!("Ram: Row {} & Col {} for player {}: 1", row_num[n], column[n], n);
+                            row_num[n] = (arr_players[n].position - 1) / 10; //RAM AK: Only delete this after ensuring everything works
+                            column[n] = (arr_players[n].position - 1) % 10;
                         }
 
                         correctroll = true;
 
                         //AK: Define function call for position check
-                        if arr_players[n].postion == 100 {
+                        if arr_players[n].position == 100 {
                             //AK: Please call Update table here
-                            println!("RAM - Game over!!");
+                            println!("Game over!!");
                             break 'snl;
                             //exit(0);//AK: Works cleanly. Will use later
                         }
@@ -445,36 +423,31 @@ impl<'a> Players<'a>{
             println!();
             println! ("##############################################################################################");
             println!("UPDATED board is:");
-            println!("{}Red", color::Fg(color::Red));// add 3
+            println!("{}Red", color::Fg(color::Red));
             for n in 0..num_players {
-                print!("{}", color::Fg(color::LightBlue));// add 4
+                print!("{}", color::Fg(color::LightBlue));
                 println!(
                     "Player {:?}'s is @:{:?}",
-                    arr_players[n].avatar_display, arr_players[n].postion
+                    arr_players[n].avatar_display, arr_players[n].position
                 );
             }
-            println!("{}Red", color::Fg(color::Yellow));// add 5
+            println!("{}Red", color::Fg(color::Yellow));
             println!("{:?}", border);
             for (i, row) in input.iter().enumerate() {
                 for (j, mut col) in row.iter().enumerate() {
-                    /*for x in 0..num_players {
-                        if i == row_num[x] && j == column[x] {
-                            col = &mut arr_players[x].avatar;
-                        }
-                    }*/
-                    let  mut player = false;
-                 for n in 0..num_players {
-                  if i == row_num[n] && j == column[n] {
-                    col = &mut arr_players[n].avatar;
-                    player = true;
+                    let mut player = false;
+                    for n in 0..num_players {
+                        if i == row_num[n] && j == column[n] {
+                            col = &mut arr_players[n].avatar;
+                            player = true;
                         }
                     }
-                    if player == true{
+                    if player == true {
                         print!("{}", color::Fg(color::Red));
-                        print!("{}",col);//color::Fg(color::Blue));
-                    }else{
+                        print!("{}", col);
+                    } else {
                         print!("{}", color::Fg(color::Yellow));
-                        print!("{}",col);
+                        print!("{}", col);
                     }
                 }
                 println!()
@@ -484,4 +457,3 @@ impl<'a> Players<'a>{
         /* Logic for Snake and Ladder ends */
     } //gameplay ends
 }
-
