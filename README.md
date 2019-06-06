@@ -26,6 +26,10 @@ Execute cargo build and cargo run to install the dependencies/build the program 
 
 Unit tests can be run with cargo test.
 
+Dependencies:
+termion crate in Cargo.toml is used to color the text in the terminal.
+Termion does not support Windows.
+
 How to Play:
 
 Board Setup-
