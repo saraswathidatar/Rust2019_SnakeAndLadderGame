@@ -12,7 +12,7 @@ use rand::Rng;
 use std::collections::HashMap;
 use termion::color;
 
-//Snake and ladder class consisting of Board layout and number of players in the game
+//Snake and ladder class consisting of number of players and player info in the game
 pub struct Snl {
     numplayers: Numplayers,
     players: Players<'static>,
@@ -60,6 +60,7 @@ impl Numplayers {
     }
 }
 
+//Create a struct to hold all player related information
 #[derive(Copy, Clone)]
 struct Players<'a> {
     position: usize,
@@ -69,6 +70,7 @@ struct Players<'a> {
 }
 
 impl<'a> Players<'a> {
+    //PLayer constructor
     pub fn new() -> Players<'static> {
         let arr_players = Players {
             position: 1,
@@ -79,7 +81,9 @@ impl<'a> Players<'a> {
         arr_players
     }
 
+    //This function helps initialize  players' position on the board
     pub fn updateplayerinfo(&mut self, numplayers: usize) -> Vec<Players<'static>> {
+        //Uses a vec of type players to push all player related data
         let mut arr_players = vec![];
         match numplayers {
             2 => {
@@ -210,6 +214,7 @@ impl<'a> Players<'a> {
     }
 
     pub fn gameplay(&mut self, mut arr_players: Vec<Players<'static>>, num_players: usize) {
+        //Variables to define board layout
         let border = "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! S  ~SNAKES & LADDERS-> R !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
         let input = vec![
             vec![
@@ -342,6 +347,7 @@ impl<'a> Players<'a> {
             row_num[k] = (arr_players[k].position - 1) / 10;
             column[k] = (arr_players[k].position - 1) % 10;
         }
+        //Display the board
         println!();
         println!("**** {:?} Players have entered the pit - Chaos is a ladder [or a snake]. You either climb or get bit! Roll & enjoy the chaos...****", num_players);
         println!("*************Snakes & Ladders initial board layout: ***************");
@@ -359,13 +365,13 @@ impl<'a> Players<'a> {
         }
         println!("{:?}", border);
 
-        /* Random number generator for rolling dice. Need to do this for each player */
-
+         //Keep the game in loop till any player reaches end (block 100)
         'snl: loop {
             for n in 0..num_players {
                 let mut random = rand::thread_rng();
                 let mut roll: usize;
                 let mut correctroll: bool = false;
+                //Keep looping till user 'rolls' as expected. Also update position based on roll
                 while correctroll == false {
                     println!(
                         "Player {:?}'s current position {:?}",
@@ -380,10 +386,10 @@ impl<'a> Players<'a> {
 
                     let r = "r".to_string();
                     let a = "R".to_string();
-                    let new_pos; // = 0
+                    let new_pos; 
 
                     if wait_roll == r || wait_roll == a {
-                        //AK: Define function call for roll function
+                        /* Random number generator for rolling dice. Need to do this for each player */
                         roll = random.gen::<usize>() % 6;
                         println!(
                             "Player {:?} rolled {:?}",
@@ -401,25 +407,23 @@ impl<'a> Players<'a> {
                                 "Player {:?}'s new position {:?}",
                                 arr_players[n].avatar_display, arr_players[n].position
                             );
-                            row_num[n] = (arr_players[n].position - 1) / 10; //RAM AK: Only delete this after ensuring everything works
+                            row_num[n] = (arr_players[n].position - 1) / 10; 
                             column[n] = (arr_players[n].position - 1) % 10;
                         }
 
                         correctroll = true;
 
-                        //AK: Define function call for position check
+                       //If any player reaches end (block 100) then quit. Cleanly!
                         if arr_players[n].position == 100 {
-                            //AK: Please call Update table here
                             println!("Game over!!");
                             break 'snl;
-                            //exit(0);//AK: Works cleanly. Will use later
                         }
                     }
                 }
-                /* End of Random number generator for rolling dice */
+                /* End of function for rolling dice */
             }
 
-            //Define function call for board display
+            //Define call for upated board display
             println!();
             println! ("##############################################################################################");
             println!("UPDATED board is:");
@@ -441,7 +445,7 @@ impl<'a> Players<'a> {
                             col = &mut arr_players[n].avatar;
                             player = true;
                         }
-                    }
+                    }//Use color based markers for players and positions
                     if player == true {
                         print!("{}", color::Fg(color::Red));
                         print!("{}", col);
