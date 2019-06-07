@@ -39,7 +39,7 @@ pub struct Numplayers {
     num_players: usize,
 }
 
-//create a new number of players object
+//create a new number of players object and set it to 0
 impl Numplayers {
     pub fn new() -> Numplayers {
         Numplayers { num_players: 0 }
@@ -60,13 +60,20 @@ impl Numplayers {
     }
 }
 
-//Create a struct to hold all player related information
+/*
+   This struct is for each player in the game
+   Info it holds is position,avatar,avatar_overlap and avatar_display
+   position: player position in the board
+   avatar: each player is assigned a unique avatar
+   avatar_overlap: if players' land on same block in the board
+   avatar_display: displays player avatar
+*/
 #[derive(Copy, Clone)]
 struct Players<'a> {
     position: usize,
     avatar: &'a str,
-    avatar_display: &'a str,
     avatar_overlap: &'a str,
+    avatar_display: &'a str,
 }
 
 impl<'a> Players<'a> {
@@ -160,7 +167,7 @@ impl<'a> Players<'a> {
         arr_players
     }
 
-    ///function to Define a hash for snakes and ladders
+    //function to Define a hash for snakes and ladders
     pub fn laddersnakeshash(&mut self, position: usize) -> usize {
         //Defining hash for ladders
         let mut ladders = HashMap::new();
@@ -460,4 +467,23 @@ impl<'a> Players<'a> {
         }
         /* Logic for Snake and Ladder ends */
     } //gameplay ends
+}
+
+/* Tests */
+#[test]
+fn test_getplayers() {
+    let mut check = Numplayers::new();
+    check.getplayers();
+}
+
+#[test]
+fn test_arrayplayers() {
+    let mut check = Players::new();
+    check.updateplayerinfo(4);
+}
+
+#[test]
+fn test_snakeandladderhash() {
+    let mut check = Players::new();
+    check.laddersnakeshash(2);
 }
