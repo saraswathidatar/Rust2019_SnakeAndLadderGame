@@ -8,6 +8,8 @@ Introduction:
 
 Snake and Ladder terminal based game written in Rust for CS510 Spring 2019 Rust Programming course at Portland State University.
 
+Project writeup is at https://github.com/saraswathidatar/Rust2019_SnakeAndLadderGame/blob/master/CS510Whitepaper-Saraswathi%20Datar.pdf
+
 Screenshots:
 ![Screenshot1.png](https://github.com/saraswathidatar/Rust2019_SnakeAndLadderGame/blob/master/static/Screenshot1.png)
 ![Screenshot2.png](https://github.com/saraswathidatar/Rust2019_SnakeAndLadderGame/blob/master/static/Screenshot2.png)
@@ -24,7 +26,7 @@ Using a command line tool, navigate to project directory.
 
 Execute cargo build and cargo run to install the dependencies/build the program and run it.
 
-Unit tests can be run with cargo test.
+Unit tests can be run with cargo test -- --nocapture. The nocapture flag can be used to include print outs with println on command line.
 
 Dependencies:
 termion crate in Cargo.toml is used to color the text in the terminal.
