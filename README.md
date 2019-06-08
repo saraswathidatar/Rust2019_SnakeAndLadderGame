@@ -46,18 +46,7 @@ Future Goals:
 1. Displaying board, Players, ladders and snakes using 2D graphics crate such as Piston
 2. Adding animation such as moving players and also moving them up the ladder, sliding down snakes using animation crate
 3. Adding sound using Audio crate
-4. Random number generation for dice could be made more random
 
 References:
 https://github.com/redox-os/termion
 
-TODOs:
-1. Fix the warnings.
-2. Run cargo clippy.
-3. Right now if players land up on same block only one player is displayed on board cropping the rest. Need to change that.
-4. Try to incorporate piston 2d graphics crate for drawing a grid, ladders and snakes; and animation crate when a player moves.
-5. Trying termion
-6. Handle cases for non integers in How many players println
-7. Write tests
-8. code refactor
-9. Rustdoc comments
