@@ -469,19 +469,24 @@ impl<'a> Players<'a> {
     } //gameplay ends
 }
 
-/* Tests */
+/* These Tests will be displayed on command line where the end user can check */
+//Type cargo test -- --nocapture
+//This test will test input from user on the command line 
 #[test]
 fn test_getplayers() {
     let mut check = Numplayers::new();
     check.getplayers();
 }
 
+//This test displays player info on command line
 #[test]
 fn test_arrayplayers() {
     let mut check = Players::new();
     check.updateplayerinfo(4);
 }
 
+//This test checks player position on board as to whether player landed on a ladder or snake 
+//will be displayed on command line
 #[test]
 fn test_snakeandladderhash() {
     let mut check = Players::new();
